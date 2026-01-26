@@ -62,10 +62,7 @@ class UserAccountCreated extends RemoteEvent {
 /// {@category Entity Command}
 @JsonSerializable()
 class ToggleFollower extends RemoteCommand {
-  ToggleFollower(this.userKey, this.userId);
-
-  /// Key of the user in the followers list (for removal)
-  String? userKey;
+  ToggleFollower(this.userId);
 
   /// ID of the target user to toggle follower status
   String userId;
@@ -105,10 +102,7 @@ class FollowerAdded extends RemoteEvent {
 /// {@category Entity Event}
 @JsonSerializable()
 class FollowerRemoved extends RemoteEvent {
-  FollowerRemoved(this.userKey, this.userId);
-
-  /// Key of the follower in the followers list
-  String userKey;
+  FollowerRemoved(this.userId);
 
   /// ID of the follower removed
   String userId;
@@ -128,10 +122,7 @@ class FollowerRemoved extends RemoteEvent {
 /// {@category Entity Command}
 @JsonSerializable()
 class ToggleFollowing extends RemoteCommand {
-  ToggleFollowing(this.userKey, this.userId);
-
-  /// Key of the user in the following list (for removal)
-  String? userKey;
+  ToggleFollowing(this.userId);
 
   /// ID of the user to toggle following status
   String userId;
@@ -171,10 +162,7 @@ class FollowingAdded extends RemoteEvent {
 /// {@category Entity Event}
 @JsonSerializable()
 class FollowingRemoved extends RemoteEvent {
-  FollowingRemoved(this.userKey, this.userId);
-
-  /// Key of the user in the following list
-  String userKey;
+  FollowingRemoved(this.userId);
 
   /// ID of the user unfollowed
   String userId;
@@ -192,10 +180,7 @@ class FollowingRemoved extends RemoteEvent {
 /// {@category Entity Command}
 @JsonSerializable()
 class ToggleUserBlock extends RemoteCommand {
-  ToggleUserBlock(this.userKey, this.userId);
-
-  /// Key of the user in the blocked users list (for removal)
-  String? userKey;
+  ToggleUserBlock(this.userId);
 
   /// ID of the user to toggle block status
   String userId;
@@ -231,10 +216,7 @@ class UserBlocked extends RemoteEvent {
 /// {@category Entity Event}
 @JsonSerializable()
 class UserUnblocked extends RemoteEvent {
-  UserUnblocked(this.userKey, this.userId);
-
-  /// Key of the user in the blocked users list
-  String userKey;
+  UserUnblocked(this.userId);
 
   /// ID of the user who was unblocked
   String userId;

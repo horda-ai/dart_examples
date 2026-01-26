@@ -76,10 +76,7 @@ class CommentCreated extends RemoteEvent {
 /// {@category Entity Command}
 @JsonSerializable()
 class ToggleCommentLike extends RemoteCommand {
-  ToggleCommentLike(this.userKey, this.userId);
-
-  /// Key of the user in the liked users list (for removal)
-  String? userKey;
+  ToggleCommentLike(this.userId);
 
   /// ID of the user toggling like status on the comment
   String userId;
@@ -119,10 +116,7 @@ class CommentLiked extends RemoteEvent {
 /// {@category Entity Event}
 @JsonSerializable()
 class CommentUnliked extends RemoteEvent {
-  CommentUnliked(this.userKey, this.userId);
-
-  /// Key of the user in the liked users list
-  String userKey;
+  CommentUnliked(this.userId);
 
   /// ID of the user who unliked the comment
   String userId;

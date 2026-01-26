@@ -169,7 +169,6 @@ class UserProcesses extends ProcessGroup {
         name: 'UserAccountEntity',
         id: event.followedUserId, // The user being followed/unfollowed
         cmd: ToggleFollower(
-          event.followerUserKey,
           context.senderId!, // The current user is the follower
         ),
         fac: [
@@ -181,7 +180,6 @@ class UserProcesses extends ProcessGroup {
         name: 'UserAccountEntity',
         id: context.senderId!, // The current user
         cmd: ToggleFollowing(
-          event.followingUserKey,
           event.followedUserId, // The user being followed/unfollowed
         ),
         fac: [
@@ -208,7 +206,6 @@ class UserProcesses extends ProcessGroup {
       name: 'UserAccountEntity',
       id: context.senderId!,
       cmd: ToggleUserBlock(
-        event.userKey,
         event.userId,
       ),
       fac: [

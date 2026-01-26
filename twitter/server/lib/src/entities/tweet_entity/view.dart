@@ -106,7 +106,7 @@ class TweetViewGroup implements EntityViewGroup {
   }
 
   void tweetUnliked(TweetUnliked event) {
-    tweetLikedByUsersView.removeItem(event.userKey);
+    tweetLikedByUsersView.removeItem(event.userId);
     tweetLikeCountView.decrement(1);
   }
 

@@ -90,31 +90,19 @@ class CommentViewModel {
     if (currentUserId == null) return false;
     return commentQuery
         .listItems((q) => q.likedByUsers)
-        .map((item) => item.value)
         .contains(currentUserId);
   }
 
   bool get isAuthorBlocked {
-    final blockedUsers = context
-        .query<MeQuery>()
-        .listItems(
-          (q) => q.blockedUsers,
-        )
-        .map((item) => item.value);
+    final blockedUsers = context.query<MeQuery>().listItems(
+      (q) => q.blockedUsers,
+    );
     return blockedUsers.contains(author.id);
-  }
-
-  String? get likeUserKey {
-    return commentQuery
-        .listItems((q) => q.likedByUsers)
-        .where((i) => i.value == context.hordaAuthUserId)
-        .firstOrNull
-        ?.key;
   }
 
   Future<void> toggleLikeComment() async {
     final result = await context.runProcess(
-      ToggleCommentLikeRequested(likeUserKey, id),
+      ToggleCommentLikeRequested(id),
     );
 
     if (result.isError) {
