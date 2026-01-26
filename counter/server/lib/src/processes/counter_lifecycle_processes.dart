@@ -72,14 +72,14 @@ class CounterLifecycleProcesses extends ProcessGroup {
   ) async {
     context.sendEntity(
       name: 'CounterEntity',
-      id: event.counterKey,
+      id: event.counterId,
       cmd: DeleteCounter(),
     );
 
     context.sendEntity(
       name: 'CounterListEntity',
       id: kSingletonId,
-      cmd: RemoveCounterFromList(counterKey: event.counterKey),
+      cmd: RemoveCounterFromList(counterId: event.counterId),
     );
 
     return ProcessResult.ok();

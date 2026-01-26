@@ -18,7 +18,6 @@ class CounterListViewModel {
     final counterQuery = listQuery.listItemQuery((q) => q.counters, index);
 
     return CounterListItem(
-      listQuery.listItem((q) => q.counters, index).key,
       counterQuery.id(),
       counterQuery.value((q) => q.counterName),
       counterQuery.value((q) => q.freezeStatus),
@@ -44,9 +43,8 @@ class CounterListViewModel {
 }
 
 class CounterListItem {
-  CounterListItem(this.itemKey, this.id, this.name, this.status, this.value);
+  CounterListItem(this.id, this.name, this.status, this.value);
 
-  final String itemKey;
   final String id;
   final String name;
   final String status;

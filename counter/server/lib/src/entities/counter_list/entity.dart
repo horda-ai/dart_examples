@@ -43,7 +43,7 @@ class CounterListEntity extends Entity<CounterListState> {
     CounterListState state,
     EntityContext context,
   ) async {
-    return CounterRemovedFromList(counterKey: command.counterKey);
+    return CounterRemovedFromList(counterId: command.counterId);
   }
 
   @override

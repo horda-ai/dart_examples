@@ -5,11 +5,9 @@ import 'package:counter_server/counter_server.dart';
 import 'query.dart';
 
 class CounterDetailsViewModel {
-  CounterDetailsViewModel(this.context, this.itemKey);
+  CounterDetailsViewModel(this.context);
 
   final BuildContext context;
-
-  final String itemKey;
 
   String get id {
     return context.query<CounterQuery>().id();
@@ -32,9 +30,7 @@ class CounterDetailsViewModel {
   }
 
   Future<void> delete() async {
-    final res = await context.runProcess(
-      DeleteCounterRequested(counterKey: itemKey),
-    );
+    final res = await context.runProcess(DeleteCounterRequested(counterId: id));
     if (res.isError) {
       throw CounterDetailsException(res.value ?? '');
     }
