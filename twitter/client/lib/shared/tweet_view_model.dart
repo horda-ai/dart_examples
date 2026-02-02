@@ -44,19 +44,13 @@ class TweetViewModel {
   bool get isLikedByCurrentUser {
     final currentUserId = context.hordaAuthUserId;
     if (currentUserId == null) return false;
-    return tweetQuery
-        .listItems((q) => q.likedByUsers)
-        .map((item) => item.value)
-        .contains(currentUserId);
+    return tweetQuery.listItems((q) => q.likedByUsers).contains(currentUserId);
   }
 
   bool get isAuthorBlocked {
-    final blockedUsers = context
-        .query<MeQuery>()
-        .listItems(
-          (q) => q.blockedUsers,
-        )
-        .map((item) => item.value);
+    final blockedUsers = context.query<MeQuery>().listItems(
+      (q) => q.blockedUsers,
+    );
     return blockedUsers.contains(author.id);
   }
 
@@ -64,17 +58,9 @@ class TweetViewModel {
     return tweetQuery.value((q) => q.attachmentUrl);
   }
 
-  String? get likeUserKey {
-    return tweetQuery
-        .listItems((q) => q.likedByUsers)
-        .where((i) => i.value == context.hordaAuthUserId)
-        .firstOrNull
-        ?.key;
-  }
-
   Future<void> toggleLikeTweet() async {
     final result = await context.runProcess(
-      ToggleTweetLikeRequested(likeUserKey, id),
+      ToggleTweetLikeRequested(id),
     );
     if (result.isError) {
       throw TweetException(

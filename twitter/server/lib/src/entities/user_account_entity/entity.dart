@@ -26,17 +26,7 @@ class UserAccountEntity extends Entity<UserAccountEntityState> {
     EntityContext context,
   ) async {
     if (state.followers.contains(cmd.userId)) {
-      final userKey = cmd.userKey;
-
-      if (userKey == null) {
-        throw ArgumentError.value(
-          userKey,
-          "userKey",
-          "User key must not be null when removing a follower",
-        );
-      }
-
-      return FollowerRemoved(userKey, cmd.userId);
+      return FollowerRemoved(cmd.userId);
     }
 
     return FollowerAdded(cmd.userId);
@@ -49,17 +39,7 @@ class UserAccountEntity extends Entity<UserAccountEntityState> {
     EntityContext context,
   ) async {
     if (state.following.contains(cmd.userId)) {
-      final userKey = cmd.userKey;
-
-      if (userKey == null) {
-        throw ArgumentError.value(
-          userKey,
-          "userKey",
-          "User key must not be null when unfollowing a user",
-        );
-      }
-
-      return FollowingRemoved(userKey, cmd.userId);
+      return FollowingRemoved(cmd.userId);
     }
 
     return FollowingAdded(cmd.userId);
@@ -72,17 +52,7 @@ class UserAccountEntity extends Entity<UserAccountEntityState> {
     EntityContext context,
   ) async {
     if (state.blockedUsers.contains(cmd.userId)) {
-      final userKey = cmd.userKey;
-
-      if (userKey == null) {
-        throw ArgumentError.value(
-          userKey,
-          "userKey",
-          "User key must not be null when unblocking a user",
-        );
-      }
-
-      return UserUnblocked(userKey, cmd.userId);
+      return UserUnblocked(cmd.userId);
     }
 
     return UserBlocked(cmd.userId);

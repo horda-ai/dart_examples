@@ -74,58 +74,35 @@ Map<String, dynamic> _$RetweetRequestedToJson(RetweetRequested instance) =>
 
 ToggleCommentLikeRequested _$ToggleCommentLikeRequestedFromJson(
   Map<String, dynamic> json,
-) => ToggleCommentLikeRequested(
-  json['userKey'] as String?,
-  json['commentId'] as String,
-);
+) => ToggleCommentLikeRequested(json['commentId'] as String);
 
 Map<String, dynamic> _$ToggleCommentLikeRequestedToJson(
   ToggleCommentLikeRequested instance,
-) => <String, dynamic>{
-  'userKey': instance.userKey,
-  'commentId': instance.commentId,
-};
+) => <String, dynamic>{'commentId': instance.commentId};
 
 ToggleTweetLikeRequested _$ToggleTweetLikeRequestedFromJson(
   Map<String, dynamic> json,
-) => ToggleTweetLikeRequested(
-  json['userKey'] as String?,
-  json['tweetId'] as String,
-);
+) => ToggleTweetLikeRequested(json['tweetId'] as String);
 
 Map<String, dynamic> _$ToggleTweetLikeRequestedToJson(
   ToggleTweetLikeRequested instance,
-) => <String, dynamic>{
-  'userKey': instance.userKey,
-  'tweetId': instance.tweetId,
-};
+) => <String, dynamic>{'tweetId': instance.tweetId};
 
 ToggleUserBlockRequested _$ToggleUserBlockRequestedFromJson(
   Map<String, dynamic> json,
-) => ToggleUserBlockRequested(
-  json['userKey'] as String?,
-  json['userId'] as String,
-);
+) => ToggleUserBlockRequested(json['userId'] as String);
 
 Map<String, dynamic> _$ToggleUserBlockRequestedToJson(
   ToggleUserBlockRequested instance,
-) => <String, dynamic>{'userKey': instance.userKey, 'userId': instance.userId};
+) => <String, dynamic>{'userId': instance.userId};
 
 ToggleUserFollowRequested _$ToggleUserFollowRequestedFromJson(
   Map<String, dynamic> json,
-) => ToggleUserFollowRequested(
-  json['followerUserKey'] as String?,
-  json['followingUserKey'] as String?,
-  json['followedUserId'] as String,
-);
+) => ToggleUserFollowRequested(json['followedUserId'] as String);
 
 Map<String, dynamic> _$ToggleUserFollowRequestedToJson(
   ToggleUserFollowRequested instance,
-) => <String, dynamic>{
-  'followerUserKey': instance.followerUserKey,
-  'followingUserKey': instance.followingUserKey,
-  'followedUserId': instance.followedUserId,
-};
+) => <String, dynamic>{'followedUserId': instance.followedUserId};
 
 UpdateUserProfileRequested _$UpdateUserProfileRequestedFromJson(
   Map<String, dynamic> json,

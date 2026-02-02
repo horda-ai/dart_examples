@@ -131,7 +131,6 @@ class TweetProcesses extends ProcessGroup {
       name: 'TweetEntity',
       id: event.tweetId,
       cmd: ToggleTweetLike(
-        event.userKey,
         context.senderId!,
       ),
       fac: [

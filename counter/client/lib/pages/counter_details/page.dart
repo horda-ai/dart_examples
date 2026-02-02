@@ -13,13 +13,13 @@ class CounterDetailsPage extends StatelessWidget {
     final routeArgs =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>?;
 
-    if (routeArgs case {'id': String id, 'itemKey': String itemKey}) {
+    if (routeArgs case {'id': String id}) {
       return context.entityQuery(
         entityId: id,
         query: CounterQuery(),
         loading: const _LoadingPage(),
         error: const _ErrorPage(),
-        child: _LoadedPage(itemKey),
+        child: _LoadedPage(),
       );
     }
 
@@ -56,9 +56,7 @@ class _LoadingPage extends StatelessWidget {
 }
 
 class _LoadedPage extends StatefulWidget {
-  const _LoadedPage(this.itemKey);
-
-  final String itemKey;
+  const _LoadedPage();
 
   @override
   State<_LoadedPage> createState() => _LoadedPageState();
@@ -71,7 +69,7 @@ class _LoadedPageState extends State<_LoadedPage> {
   @override
   void initState() {
     super.initState();
-    model = CounterDetailsViewModel(context, widget.itemKey);
+    model = CounterDetailsViewModel(context);
   }
 
   Future<void> _onDelete() async {

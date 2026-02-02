@@ -2,7 +2,6 @@ import 'package:horda_server/horda_server.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'entity.dart';
-import 'messages.dart';
 
 part 'state.g.dart';
 

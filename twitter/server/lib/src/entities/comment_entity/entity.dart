@@ -26,17 +26,7 @@ class CommentEntity extends Entity<CommentEntityState> {
     EntityContext context,
   ) async {
     if (state.likedByUsers.contains(cmd.userId)) {
-      final userKey = cmd.userKey;
-
-      if (userKey == null) {
-        throw ArgumentError.value(
-          userKey,
-          "userKey",
-          "User key must not be null when unliking a comment",
-        );
-      }
-
-      return CommentUnliked(userKey, cmd.userId);
+      return CommentUnliked(cmd.userId);
     }
 
     return CommentLiked(cmd.userId);

@@ -134,13 +134,13 @@ class _InfiniteScrollListViewState<Q extends EntityQuery>
   }
 
   /// A callback which allows the child page sync the pagination cursor data - [_lastPageItemCount] and [_nextEndBefore].
-  /// Must not perfrom [setState] or trigger parent rebuilds in any other way, because this callback is executed in child page's build method.
-  void _syncCursor(int pageIndex, int itemCount, String? firstItemKey) {
+  /// Must not perform [setState] or trigger parent rebuilds in any other way, because this callback is executed in child page's build method.
+  void _syncCursor(int pageIndex, int itemCount, String? firstItemRefId) {
     // Only update for the last page
     if (pageIndex == _pages.length - 1) {
       _lastPageItemCount = itemCount;
-      if (firstItemKey != null) {
-        _nextEndBefore = firstItemKey;
+      if (firstItemRefId != null) {
+        _nextEndBefore = firstItemRefId;
       }
     }
   }
@@ -210,26 +210,24 @@ class _PageLoadedWidgetState<Q extends EntityQuery>
     super.initState();
 
     final itemCount = context.lookup<Q>().listLength(widget.listSelector);
-    final firstItemKey = context
+    final firstItemRefId = context
         .lookup<Q>()
         .listItems(widget.listSelector)
-        .firstOrNull
-        ?.key;
+        .firstOrNull;
 
-    widget.onPageLoaded(widget.pageIndex, itemCount, firstItemKey);
+    widget.onPageLoaded(widget.pageIndex, itemCount, firstItemRefId);
   }
 
   @override
   Widget build(BuildContext context) {
     final itemCount = context.query<Q>().listLength(widget.listSelector);
-    final firstItemKey = context
+    final firstItemRefId = context
         .query<Q>()
         .listItems(widget.listSelector)
-        .firstOrNull
-        ?.key;
+        .firstOrNull;
 
     // Sync item count with parent during build. This function does not trigger rebuilds, simply mutates state.
-    widget.syncCursor(widget.pageIndex, itemCount, firstItemKey);
+    widget.syncCursor(widget.pageIndex, itemCount, firstItemRefId);
 
     if (itemCount == 0) {
       // Empty page - might be the first page with no items

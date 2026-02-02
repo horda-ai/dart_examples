@@ -30,11 +30,11 @@ Map<String, dynamic> _$CreateCounterRequestedToJson(
 
 DeleteCounterRequested _$DeleteCounterRequestedFromJson(
   Map<String, dynamic> json,
-) => DeleteCounterRequested(counterKey: json['counterKey'] as String);
+) => DeleteCounterRequested(counterId: json['counterId'] as String);
 
 Map<String, dynamic> _$DeleteCounterRequestedToJson(
   DeleteCounterRequested instance,
-) => <String, dynamic>{'counterKey': instance.counterKey};
+) => <String, dynamic>{'counterId': instance.counterId};
 
 IncrementCounterRequested _$IncrementCounterRequestedFromJson(
   Map<String, dynamic> json,
